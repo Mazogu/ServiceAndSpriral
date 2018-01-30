@@ -10,6 +10,7 @@ public class MyNormalService extends Service {
     public MyNormalService() {
     }
 
+    //Binds to a component that wishes to bind with the service.
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
@@ -26,10 +27,11 @@ public class MyNormalService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand: "+intent.getStringExtra("data"));
         //do the task
-        stopSelf();
+        stopSelf();//After task is complete service ends itself. It would just continue going otherwise.
         return super.onStartCommand(intent, flags, startId);
     }
 
+    //Is called when stopSelf or stopService is called.
     @Override
     public void onDestroy() {
         super.onDestroy();

@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handlingServices(View view) {
+        //Create new intents to call startService with.
         Intent intentNormal = new Intent(getApplicationContext(), MyNormalService.class);
         Intent intentIntent = new Intent(getApplicationContext(), MyIntentService.class);
         Intent intentBound = new Intent(getApplicationContext(), MyBoundService.class);
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 startService(intentNormal);
                 break;
             case R.id.stopNormal:
+                //Kills the normal service since it'll run indefinitely otherwise.
                 stopService(intentNormal);
                 break;
             case R.id.startIntentService:
@@ -42,7 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 startService(intentIntent);
                 break;
             case R.id.bindService:
+                //Binds service intent to application.
+                Log.d(TAG, "handlingServices: Start");
                 bindService(intentBound,connection, Context.BIND_AUTO_CREATE);
+                Log.d(TAG, "handlingServices: Stop");
                 break;
             case R.id.unBindService:
                 break;
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            //Casts the passed in iBinder to myBinder.
             MyBoundService.MyBinder myBinder = (MyBoundService.MyBinder) iBinder;
             myBoundService = myBinder.getServiceObject();
             myBoundService.init();

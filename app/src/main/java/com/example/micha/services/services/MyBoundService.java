@@ -12,6 +12,7 @@ public class MyBoundService extends Service {
     public MyBoundService() {
     }
 
+    //Creates a new IBinder.
     IBinder iBinder = new MyBinder();
 
     public class MyBinder extends Binder{

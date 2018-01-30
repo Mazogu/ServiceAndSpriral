@@ -21,6 +21,7 @@ public class MyIntentService extends IntentService {
         super("MyIntentService");
     }
 
+    //Uses the intent object to handle data when called.
     @Override
     protected void onHandleIntent(Intent intent) {
         Log.d(TAG, "onHandleIntent: "+intent.getStringExtra("data")+ " Thread" + Thread.currentThread().getName());
